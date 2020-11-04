@@ -1,7 +1,12 @@
+//rmwc styles go here
+
+import { MainPage } from './pages/main'
+
 function App() {
   return (
-    <div className="App">
-    </div>
+    // TopAppBar
+    <MainPage />
+    // Dialogs
   );
 }
 
