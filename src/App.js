@@ -1,5 +1,4 @@
 //rmwc styles go here
-import '@rmwc/button/styles';
 import '@rmwc/icon-button/styles';
 import '@rmwc/top-app-bar/styles';
 import '@rmwc/menu/styles';
@@ -9,8 +8,9 @@ import '@rmwc/radio/styles';
 import '@rmwc/list/styles';
 import '@rmwc/icon/styles';
 import '@rmwc/textfield/styles';
-import '@rmwc/dialog/styles';
 import '@rmwc/avatar/styles';
+import '@rmwc/button/styles'
+import '@rmwc/dialog/styles'
 
 import { MainPage } from './pages/main'
 import { TopBar } from './components/topbar/topbar'
