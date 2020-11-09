@@ -1,0 +1,39 @@
+article {
+    background-color: lightblue;
+    padding-left: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-right: 5px;
+    margin-top: 10px;
+    margin-left: 10px;
+    float: right;
+    width: fill;
+    font-size: 40px;
+}
+button {
+    color: black;
+    margin-right: 10px;
+    background-color: orange;
+}
+
+.popup {  
+    position: fixed;  
+    width: 80%;  
+    height: 80%;  
+    top: 50;  
+    left: 50;  
+    right: 50;  
+    bottom: 50;  
+    margin: auto;  
+    background-color: rgba(0,0,0, 0.5);  
+  }  
+  .popup\_inner {  
+    position: absolute;  
+    left: 25%;  
+    right: 25%;  
+    top: 25%;  
+    bottom: 25%;  
+    margin: auto;  
+    border-radius: 20px;  
+    background-color: white;  
+  }
