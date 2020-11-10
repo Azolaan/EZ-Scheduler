@@ -1,5 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
+import _ from "lodash"
 
 import { ViewState, EditingState } from "@devexpress/dx-react-scheduler"
 import {
@@ -12,11 +13,42 @@ import {
     EditRecurrenceMenu,
     AppointmentForm,
     AppointmentTooltip,
-    AllDayPanel
+    AllDayPanel,
+    ConfirmationDialog
 } from "@devexpress/dx-react-scheduler-material-ui"
 import { Button } from "@rmwc/button"
 
 import "./calendar.css"
+
+const generateBasicLayoutComponent = () => {
+    return class BasicLayoutComponent extends React.Component {
+        state = {}
+
+        _handleFieldChange = (change) => {
+            let startDate =
+                _.get(change, "startDate") ||
+                this.props.appointmentData.startDate
+            let endDate =
+                _.get(change, "endDate") || this.props.appointmentData.endDate
+
+            let invalid = endDate - startDate < 0
+            if (invalid) {
+                alert("Start date cannot be after end date")
+            } else {
+                this.props.onFieldChange(change)
+            }
+        }
+
+        render() {
+            return (
+                <AppointmentForm.BasicLayout
+                    {...this.props}
+                    onFieldChange={this._handleFieldChange}
+                />
+            )
+        }
+    }
+}
 
 class CalendarComponent extends React.Component {
     static propTypes = {
@@ -35,7 +67,8 @@ class CalendarComponent extends React.Component {
         currentDate: new Date(),
         editingEvent: undefined,
         addingEvent: undefined,
-        editingFormVisible: false
+        editingFormVisible: false,
+        saveButtonDisabled: false
     }
 
     _handleCurrentDateChange = (currentDate) => {
@@ -65,6 +98,10 @@ class CalendarComponent extends React.Component {
 
     _handleAddingAppointmentChange = (appointment) => {
         this.setState({ addingEvent: appointment })
+    }
+
+    _handleAppointmentDataChange = (data) => {
+        console.log(data)
     }
 
     _toggleEditingFormVisibility = () => {
@@ -118,6 +155,7 @@ class CalendarComponent extends React.Component {
                         />
                     )}
                     {this.props.editable && <EditRecurrenceMenu />}
+                    <ConfirmationDialog />
                     <AppointmentTooltip
                         showOpenButton={this.props.editable}
                         showDeleteButton={this.props.editable}
@@ -125,6 +163,10 @@ class CalendarComponent extends React.Component {
                     <AppointmentForm
                         visible={this.state.editingFormVisible}
                         onVisibilityChange={this._toggleEditingFormVisibility}
+                        basicLayoutComponent={generateBasicLayoutComponent()}
+                        onAppointmentDataChange={
+                            this._handleAppointmentDataChange
+                        }
                     />
                 </Scheduler>
                 <Button

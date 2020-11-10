@@ -29,6 +29,15 @@ class MainPage extends React.Component {
                         [event.id]: { changes, appointment, type }
                     } = changed
 
+                    if (
+                        (_.get(changes, "startDate") &&
+                            isNaN(changes.startDate.valueOf())) ||
+                        (_.get(changes, "endDate") &&
+                            isNaN(changes.endDate.valueOf()))
+                    ) {
+                        return event
+                    }
+
                     if (type === "all") {
                         if (
                             _.has(changes, "startDate") ||
