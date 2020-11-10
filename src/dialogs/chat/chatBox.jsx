@@ -17,7 +17,7 @@ class ChatBox extends React.Component {
         return(
             <div>
                 <Dialog open={this.state.isOpen} onClose={() => this.setState({isOpen : false})}>
-                    <DialogTitle>{this.props.name}<Button>X</Button></DialogTitle>
+                    <DialogTitle>{this.props.name}</DialogTitle>
                     <DialogContent>
                     </DialogContent>
                     <DialogActions>
@@ -25,7 +25,8 @@ class ChatBox extends React.Component {
                 </Dialog>
                 <div style={{textAlign : "right"}}>
                 <Button raised onClick={() => this.setState({isOpen : true})}>
-                    {this.props.name}
+                    {/* {this.props.name} */}
+                    Chat Button
                 </Button>
                 </div>
             </div>

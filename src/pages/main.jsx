@@ -4,10 +4,10 @@ import _ from "lodash"
 import { CalendarComponent } from "../components/calendar/calendar"
 import { FriendsListComponent } from "../components/friends-list/friends-list"
 import ChatBox from "../dialogs/chat/chatBox"
+import Profile from "../dialogs/profile/profile"
 
 import { generateUUID } from "../utils/uuid"
 import { schedulerData } from "../data/scheduler-data"
-
 
 import "./main.css"
 
@@ -135,6 +135,15 @@ class MainPage extends React.Component {
     }
 
     render() {
+        let userInfo = {
+            name : "John Smith",
+            userName : "SmiJ32",
+            password : "**********",
+            school : "McMaster University",
+            major : "Software Engineering",
+            year : "4",
+            bio : "Hi! John here, i'm in my last of Software Engineering"
+        }
         return (
             <div class="main-page">
                 <CalendarComponent
@@ -145,7 +154,8 @@ class MainPage extends React.Component {
                     onDeleteEvent={this._handleDeleteEvent}
                 />
                 <FriendsListComponent />
-                {<ChatBox name={"Lawrence Chung"}/>}
+                {<ChatBox userInfo={userInfo}/>}
+                {<Profile userInfo={userInfo}/>}
             </div>
         )
     }
