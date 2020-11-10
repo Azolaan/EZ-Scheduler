@@ -1,0 +1,12 @@
+.dialog {
+    width: 600px;
+}
+
+.right-align {
+    float: right;
+    display: inline;
+}
+
+.bold-text {
+    font-weight: bold;
+}

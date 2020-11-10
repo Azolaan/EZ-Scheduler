@@ -3,7 +3,7 @@ import _ from "lodash"
 
 import { CalendarComponent } from "../components/calendar/calendar"
 import { FriendsListComponent } from "../components/friends-list/friends-list"
-import ChatBox from "../dialogs/chat/chatBox"
+import Profile from "../dialogs/profile/profile"
 
 import { generateUUID } from "../utils/uuid"
 import { schedulerData } from "../data/scheduler-data"
@@ -152,8 +152,8 @@ class MainPage extends React.Component {
                     onEditEvent={this._handleEditEvent}
                     onDeleteEvent={this._handleDeleteEvent}
                 />
-                <FriendsListComponent />
-                {/* {<ChatBox userInfo={userInfo}/>} */}
+                <FriendsListComponent />           
+                <Profile userInfo={userInfo}/>
             </div>
         )
     }
