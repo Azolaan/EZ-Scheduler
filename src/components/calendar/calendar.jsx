@@ -18,35 +18,58 @@ import {
 } from "@devexpress/dx-react-scheduler-material-ui"
 import { Button } from "@rmwc/button"
 
+import { CirclePicker } from "react-color"
+
 import "./calendar.css"
 
-const generateBasicLayoutComponent = () => {
-    return class BasicLayoutComponent extends React.Component {
-        state = {}
+class BasicLayoutComponent extends React.Component {
+    state = {}
 
-        _handleFieldChange = (change) => {
-            let startDate =
-                _.get(change, "startDate") ||
-                this.props.appointmentData.startDate
-            let endDate =
-                _.get(change, "endDate") || this.props.appointmentData.endDate
+    _handleColorChange = (color) => {
+        this.props.onFieldChange({ color: color.hex })
+    }
 
-            let invalid = endDate - startDate < 0
-            if (invalid) {
-                alert("Start date cannot be after end date")
-            } else {
-                this.props.onFieldChange(change)
-            }
+    _handleFieldChange = (change) => {
+        let startDate =
+            _.get(change, "startDate") || this.props.appointmentData.startDate
+        let endDate =
+            _.get(change, "endDate") || this.props.appointmentData.endDate
+
+        let invalid = endDate - startDate < 0
+        if (invalid) {
+            alert("Start date cannot be after end date")
+        } else {
+            this.props.onFieldChange(change)
         }
+    }
 
-        render() {
-            return (
-                <AppointmentForm.BasicLayout
-                    {...this.props}
-                    onFieldChange={this._handleFieldChange}
+    render() {
+        return (
+            <AppointmentForm.BasicLayout
+                {...this.props}
+                onFieldChange={this._handleFieldChange}
+            >
+                <AppointmentForm.Label text="Colour" type="title" />
+                <CirclePicker
+                    color={this.props.appointmentData.color}
+                    onChangeComplete={this._handleColorChange}
                 />
-            )
-        }
+            </AppointmentForm.BasicLayout>
+        )
+    }
+}
+
+class AppointmentComponent extends React.Component {
+    render() {
+        return (
+            <Appointments.Appointment
+                {...this.props}
+                style={{
+                    borderRadius: "8px",
+                    backgroundColor: this.props.data.color
+                }}
+            />
+        )
     }
 }
 
@@ -100,10 +123,6 @@ class CalendarComponent extends React.Component {
         this.setState({ addingEvent: appointment })
     }
 
-    _handleAppointmentDataChange = (data) => {
-        console.log(data)
-    }
-
     _toggleEditingFormVisibility = () => {
         this.setState((state) => ({
             editingFormVisible: !state.editingFormVisible
@@ -119,7 +138,8 @@ class CalendarComponent extends React.Component {
             title: undefined,
             allDay: false,
             startDate,
-            endDate
+            endDate,
+            color: "#2196f3"
         }
 
         this.setState({ addingEvent: newEvent, editingFormVisible: true })
@@ -139,7 +159,7 @@ class CalendarComponent extends React.Component {
                     <Toolbar />
                     <DateNavigator />
                     <TodayButton />
-                    <Appointments />
+                    <Appointments appointmentComponent={AppointmentComponent} />
                     {this.props.editable && (
                         <EditingState
                             onCommitChanges={this._handleCommitChange}
@@ -163,10 +183,7 @@ class CalendarComponent extends React.Component {
                     <AppointmentForm
                         visible={this.state.editingFormVisible}
                         onVisibilityChange={this._toggleEditingFormVisibility}
-                        basicLayoutComponent={generateBasicLayoutComponent()}
-                        onAppointmentDataChange={
-                            this._handleAppointmentDataChange
-                        }
+                        basicLayoutComponent={BasicLayoutComponent}
                     />
                 </Scheduler>
                 <Button
