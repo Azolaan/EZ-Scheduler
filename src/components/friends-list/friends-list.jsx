@@ -196,7 +196,7 @@ class FriendsListComponent extends React.Component {
       <div class="sidebar">
         <List twoLine>
           {userZero.map(user => !user.isFriend && user.isUserZero  &&
-            <User key={user.id} image={user.image} name={user.name} username={user.username} password={user.password} school={user.school} major={user.major} year={user.year} bio={user.bio} isUserZero={user.isUserZero} isFriend={user.isFriend}/>)}  
+            <User key={user.id} image={user.image} name={user.name} username={user.username} password={user.password} school={user.school} major={user.major} year={user.year} bio={user.bio} isUserZero={user.isUserZero} isFriend={user.isFriend} showProfile={user.showProfile} showChat={user.showChat} showCalendar={user.showCalendar} sendFriendRequest={user.sendFriendRequest}/>)}
         </List>
         <div>
           <TextField class="textfield"
@@ -206,13 +206,13 @@ class FriendsListComponent extends React.Component {
         <List twoLine>
         <h4>Users</h4>
           {filteredUsers.map(user => !user.isFriend && !user.isUserZero &&
-            <User key={user.id} image={user.image} name={user.name} username={user.username} password={user.password} school={user.school} major={user.major} year={user.year} bio={user.bio} isUserZero={user.isUserZero} isFriend={user.isFriend}/>)}
+            <User key={user.id} image={user.image} name={user.name} username={user.username} password={user.password} school={user.school} major={user.major} year={user.year} bio={user.bio} isUserZero={user.isUserZero} isFriend={user.isFriend} showProfile={user.showProfile} showChat={user.showChat} showCalendar={user.showCalendar} sendFriendRequest={user.sendFriendRequest}/>)}
         </List>
         <ListDivider/>
         <List twoLine>
         <h4>Friends</h4>
           {filteredUsers.map(user => user.isFriend &&
-            <User key={user.id} image={user.image} name={user.name} username={user.username} password={user.password} school={user.school} major={user.major} year={user.year} bio={user.bio} isUserZero={user.isUserZero} isFriend={user.isFriend}/>)}
+            <User key={user.id} image={user.image} name={user.name} username={user.username} password={user.password} school={user.school} major={user.major} year={user.year} bio={user.bio} isUserZero={user.isUserZero} isFriend={user.isFriend} showProfile={user.showProfile} showChat={user.showChat} showCalendar={user.showCalendar} sendFriendRequest={user.sendFriendRequest}/>)}
         </List>
       </div>
       
