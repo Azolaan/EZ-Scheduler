@@ -2,9 +2,11 @@ import React from "react"
 import _ from "lodash"
 
 import { CalendarComponent } from "../components/calendar/calendar"
+import { FriendsListComponent } from './components/friends-list/friends-list'
 
 import { generateUUID } from "../utils/uuid"
 import { schedulerData } from "../data/scheduler-data"
+
 
 import "./main.css"
 
@@ -141,7 +143,7 @@ class MainPage extends React.Component {
                     onEditEvent={this._handleEditEvent}
                     onDeleteEvent={this._handleDeleteEvent}
                 />
-                {/* FriendsList */}
+                <FriendsListComponent />
             </div>
         )
     }
