@@ -2,10 +2,9 @@ import React from 'react'
 
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '@rmwc/dialog'
 import { Button } from '@rmwc/button'
+import { TextField } from '@rmwc/textfield'
 
 import "./profile.css"
-
-// remind of unsaved changes if attempted to close and editState = true
 
 class Profile extends React.Component {
     constructor(props) {
@@ -19,9 +18,7 @@ class Profile extends React.Component {
         }
     }
 
-    callBackFn = (val) => {
-        var curState, newState
-        console.log(val)
+    toggleEditCallBackFn = (val) => {
         switch(val) {
             case "Account Information":
                 this.setState((state) => ({ accInfoEditState: !state.accInfoEditState }), () => console.log("accinfoeditstate:", this.state.accInfoEditState))
@@ -33,6 +30,9 @@ class Profile extends React.Component {
                 this.setState((state) => ({ bioEditState: !state.bioEditState }), () => console.log("bioeditstate:", this.state.bioEditState))
                 break
         }
+    }
+
+    toggleTextBoxCallbackFn = () => {
 
     }
 
@@ -55,6 +55,25 @@ class Profile extends React.Component {
         }
     }
 
+    textFieldChange = (e) => {
+    }
+
+    componentSelector = (state, content) => {
+        if (!state) {
+            return (
+                <div>
+                    {content}
+                </div>
+            ) 
+        } else {
+            return (
+                <div>
+                    <TextField outlined value={content} onChange={(e) => this.textFieldChange(e, content)}></TextField>
+                </div>
+            )
+        }
+    }
+
     render() {
         return (
             <div>
@@ -66,22 +85,25 @@ class Profile extends React.Component {
                         <DialogContent>
                             <Edit
                             section="Account Information"
-                            callBackFn={this.callBackFn.bind(this)}
+                            textBoxCallbackFn={this.toggleTextBoxCallbackFn.bind(this)}
+                            toggleEditCallBackFn={this.toggleEditCallBackFn.bind(this)}
                             editState={this.state.accInfoEditState}
                             /><br />
-                            Username (ID): <div className="right-align">{this.props.userInfo.userName}</div><br />
+                            Username (ID): <div className="right-align">{/*this.props.userInfo.userName*/}{this.componentSelector(this.state.accInfoEditState, this.props.userInfo.userName)}</div><br />
                             Password: <div className="right-align">{this.props.userInfo.password}</div><br /><br />
                             <Edit
+                            textBoxCallbackFn={this.toggleTextBoxCallbackFn.bind(this)}
                             section="Personal Information"
-                            callBackFn={this.callBackFn.bind(this)}
+                            toggleEditCallBackFn={this.toggleEditCallBackFn.bind(this)}
                             editState={this.state.personalInfoEditState}
                             /><br />
                             School: <div className="right-align">{this.props.userInfo.school}</div><br />
                             Major: <div className="right-align">{this.props.userInfo.major}</div><br />
                             Year: <div className="right-align">{this.props.userInfo.year}</div><br /><br />
                             <Edit
+                            textBoxCallbackFn={this.toggleTextBoxCallbackFn.bind(this)}
                             section="Bio"
-                            callBackFn={this.callBackFn.bind(this)}
+                            toggleEditCallBackFn={this.toggleEditCallBackFn.bind(this)}
                             editState={this.state.bioEditState}
                             /><br />
                             {this.props.userInfo.bio}
@@ -89,7 +111,7 @@ class Profile extends React.Component {
                         <DialogActions style={{textAlign: "center"}}>
                             <WarningDialog 
                             state={this.state}
-                            callBackFn={this.closeDialog.bind(this)}/>
+                            toggleEditCallBackFn={this.closeDialog.bind(this)}/>
                         </DialogActions>
                     </Dialog>
                 </div>
@@ -122,7 +144,7 @@ class WarningDialog extends React.Component {
             this.setState({isOpen : true})
         } else {
             this.setState({isOpen : false})
-            this.props.callBackFn()
+            this.props.toggleEditCallBackFn()
         }
     }
 
@@ -152,7 +174,6 @@ function TextBoxToggle(props) {
     )
 }
 
-// issue here
 class Edit extends React.Component {
     constructor(props) {
         super(props)
@@ -165,11 +186,16 @@ class Edit extends React.Component {
             return ("Edit")
         }
     }
+
+    buttonClick = () => {
+        this.props.toggleEditCallBackFn(this.props.section)
+        // this.props.toggleTextBoxCallbackFn()
+    }
     render() {
         return(
             <div>
                 {this.props.section}{" "}
-                <div className="right-align"><Button onClick={() => this.props.callBackFn(this.props.section)}>{this.buttonLabel()}</Button></div>
+                <div className="right-align"><Button onClick={this.buttonClick.bind(this)}>{this.buttonLabel()}</Button></div>
             </div>
         )
     }
