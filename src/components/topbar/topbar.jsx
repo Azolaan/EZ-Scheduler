@@ -80,7 +80,7 @@ class TopBar extends React.Component {
 class Notif extends React.Component {
     render() {  
         return (  
-            <div style={{ padding : '1px', width: '350px', height: '600px' }}>
+            <div style={{ padding : '1px', width: '350px', height: '600px', font: "Roboto" }}>
             <a class = "title"><b>Notifications</b></a>
             <hr/>
                 <List class = "list">
@@ -105,7 +105,7 @@ class Notif extends React.Component {
 class Settings extends React.Component {    
     constructor(props) {
         super(props);
-        this.state = {notifMute: false, notifMessage: false, notifSound: "Jingle", friendNotif: false, friendMessage: false, friendSound: "Jingle", theme:"Red"};
+        this.state = {notifMute: false, notifMessage: false, friendNotif: false, friendMessage: false, theme:"Red"};
     }
 
     setTheme(t){
@@ -113,22 +113,6 @@ class Settings extends React.Component {
         console.log(this.state.theme);
         this.setState({
             theme: t
-        });
-    }
-
-    setfriendSound(s){
-        console.log("friendSound");
-        console.log(this.state.friendSound);
-        this.setState({
-            friendSound: s
-        });
-    }
-
-    setnotifSound(s){
-        console.log("notifSound");
-        console.log(this.state.notifSound);
-        this.setState({
-            notifSound: s
         });
     }
 
@@ -167,7 +151,7 @@ class Settings extends React.Component {
 
     render() {  
         return (  
-            <div style={{ padding : '1px', width: '340px', height: '500px' }}>
+            <div style={{ padding : '1px', width: '340px', height: '500px', font: "Roboto" }}>
                 <a class = "title"><b>Settings</b></a>
                 <hr/>
                 <a class = "subtitle">Notifications</a>
@@ -181,12 +165,6 @@ class Settings extends React.Component {
                     <a class = "switchText">Message Notifications </a>
                     <Switch class = "switchButton" defaultNotChecked  onChange={this.togglenotifMessage.bind(this)} disabled = {this.state.notifMute}/>
                 </a>
-                {/* Message Notifications Sound Drop Down*/}
-                <a class = "dropdownLine">Message Notifications Sound
-                    <Select class = "dropdown" label = "options" enhanced onChange={e => this.setnotifSound(e.target.value)} disabled = {this.state.notifMute}
-                        options = {['Jingle','Ringle','Mingle','Woomp']}
-                    />
-                </a>
                 {/* Friend Request Notifications*/}
                 <a class = "switchLine">
                     <a class = "switchText">Friend Request Notifcations </a>
@@ -196,12 +174,6 @@ class Settings extends React.Component {
                 <a class = "switchLine">
                     <a class = "switchText">Message Notifications </a>
                     <Switch class = "switchButton" defaultNotChecked onChange={this.togglefriendNotif.bind(this)} disabled = {this.state.notifMute}/>
-                </a>
-                {/* Friend Request Notifications Sound DropDown*/}
-                <a class = "dropdownLine">Friend Request Notifications Sound
-                    <Select class = "dropdown" label = "options"  enhanced  onChange={e => this.setfriendSound(e.target.value)} disabled = {this.state.notifMute}
-                        options = {['Jingle','Ringle','Mingle','Woomp']}
-                    />
                 </a>
                 <hr/>
                 {/*Theme Radio Buttons*/}
