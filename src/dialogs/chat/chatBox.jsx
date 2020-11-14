@@ -5,7 +5,7 @@ import { Button } from '@rmwc/button'
 import { IconButton } from '@rmwc/icon-button'
 import { TextField } from '@rmwc/textfield'
 import { Drawer, DrawerContent } from '@rmwc/drawer'
-import { Badge } from '@rmwc/badge'
+import { MenuSurfaceAnchor, MenuSurface } from '@rmwc/menu'
 
 import "./chatBox.css"
 
@@ -32,15 +32,23 @@ class ChatBox extends React.Component {
         let displayMessages = this.state.messages
         return(
             <div>
-                <Dialog 
+                <MenuSurfaceAnchor style={{
+                    float: "right"}}>
+                <MenuSurface
                 open={this.state.isOpen} 
                 onClose={() => this.setState({isOpen : false})}
                 >
+                    <div>
                     <DialogTitle>{this.props.userInfo.name}</DialogTitle>
+                    <IconButton 
+                    icon="close" 
+                    style={{float: "right", display: "inline", top: "-50px"}}
+                    onClick={() => this.setState({isOpen : false})} />
+                    </div>
                     <DialogContent>
                         <Drawer 
                         style={{
-                            height: "20vh",
+                            height: "20vh"
                             }}>
                             <DrawerContent>
                                 {displayMessages.map((message) => 
@@ -51,11 +59,20 @@ class ChatBox extends React.Component {
                             </DrawerContent>
                         </Drawer>
                     </DialogContent>
-                    <DialogActions>
+                    <div style={{display: "inline"}}>
                     <IconButton 
                     icon="emoji_emotions"
-                    style={{width: "30px", height: "30px", padding: 0}}
+                    style={{
+                        width: "20px", 
+                        height: "20px", 
+                        padding: 0}}
                     />{" "}
+                    <IconButton
+                    icon="attach_file"
+                    style={{
+                        width: "20px", 
+                        height: "20px", 
+                        padding: 0}} />{" "}
                     <TextField
                     onChange={(e) => this.setState({text : e.currentTarget.value})}
                     value={this.state.text}
@@ -63,10 +80,15 @@ class ChatBox extends React.Component {
                         icon: 'send',
                         onClick: () => this.sendMessage(this.state.text)
                     }}
-                    style={{height: "30px"}}
+                    style={{
+                        height: "30px",
+                        right: "-5px",
+                        width: "240px",
+                        top: "-7px"}}
                     />
-                    </DialogActions>
-                </Dialog>
+                    </div>
+                </MenuSurface>
+                </MenuSurfaceAnchor>
                 <div style={{textAlign : "right"}}>
                 <Button raised onClick={() => this.setState({isOpen : true})}>
                     {/* {this.props.name} */}
