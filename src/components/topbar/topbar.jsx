@@ -73,12 +73,10 @@ class TopBar extends React.Component {
                                 <Avatar className="avatar"
                                     src=".../friends-list/images/john-smith.png"
                                     size="xlarge"/>
-                                <ListItemText>John Smith</ListItemText>
+                                <ListItemText style = {{fontFamily:'Roboto'}}>John Smith</ListItemText>
                             </ListItem>
                             <MenuSurfaceAnchor>
                             <TopAppBarActionItem icon="calendar_today" />
-                                <MenuSurface className="settingsSurface" anchorCorner={'bottomStart'} open={this.state.showSettings} onClose={this.offSettings.bind(this)}>
-                                </MenuSurface>
                             </MenuSurfaceAnchor>              
                         </TopAppBarSection>
                     </TopAppBarRow>
