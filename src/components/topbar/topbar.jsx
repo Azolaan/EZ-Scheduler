@@ -5,8 +5,9 @@ import { Button } from '@rmwc/button';
 import { SimpleMenuSurface, Menu, MenuItem, SimpleMenu, MenuSurface, MenuSurfaceAnchor } from '@rmwc/menu';
 import { Switch } from '@rmwc/switch';
 import { Radio } from '@rmwc/radio';
-import { List, ListItem, ListItemMeta } from '@rmwc/list';
+import { List, ListItem, ListItemMeta, ListItemText, ListItemPrimaryText, ListItemSecondaryText, ListItemGraphic } from '@rmwc/list';
 import { TopAppBar, TopAppBarRow, TopAppBarSection, TopAppBarTitle, TopAppBarActionItem, TopAppBarFixedAdjust } from '@rmwc/top-app-bar';
+import {Avatar} from "@rmwc/avatar";
 
 import './topbar.css';
 
@@ -68,6 +69,17 @@ class TopBar extends React.Component {
                                     <Settings/>
                                 </MenuSurface>
                             </MenuSurfaceAnchor>
+                            <ListItem>
+                                <Avatar className="avatar"
+                                    src=".../friends-list/images/john-smith.png"
+                                    size="xlarge"/>
+                                <ListItemText>John Smith</ListItemText>
+                            </ListItem>
+                            <MenuSurfaceAnchor>
+                            <TopAppBarActionItem icon="calendar_today" />
+                                <MenuSurface className="settingsSurface" anchorCorner={'bottomStart'} open={this.state.showSettings} onClose={this.offSettings.bind(this)}>
+                                </MenuSurface>
+                            </MenuSurfaceAnchor>              
                         </TopAppBarSection>
                     </TopAppBarRow>
                 </TopAppBar> 

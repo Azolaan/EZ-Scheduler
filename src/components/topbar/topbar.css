@@ -62,5 +62,18 @@ hr {
 }
 
 .settingsIcon {  
-    margin-right: 200px;
+    margin-right: 100px;
+} 
+
+
+.popup_settings_inner {  
+    position: absolute;
+    margin: 5px;  
+    border-radius: 20px;  
+    background: red;
+    background-color: blue;
+}
+
+.avatar {
+    margin-right: 20px;
 }

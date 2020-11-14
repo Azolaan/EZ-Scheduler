@@ -7,9 +7,14 @@ import '@rmwc/switch/styles';
 import '@rmwc/select/styles';
 import '@rmwc/radio/styles';
 import '@rmwc/list/styles';
+import '@rmwc/icon/styles';
+import '@rmwc/textfield/styles';
+import '@rmwc/dialog/styles';
+import '@rmwc/avatar/styles';
 
 import { MainPage } from './pages/main'
 import { TopBar } from './components/topbar/topbar'
+
 
 function App() {
   return (
@@ -18,7 +23,9 @@ function App() {
 
       <MainPage />
     </>
-  );
-}
+
+  )
+  }
+
 
 export default App;
