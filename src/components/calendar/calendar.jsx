@@ -13,8 +13,7 @@ import {
     EditRecurrenceMenu,
     AppointmentForm,
     AppointmentTooltip,
-    AllDayPanel,
-    ConfirmationDialog
+    AllDayPanel
 } from "@devexpress/dx-react-scheduler-material-ui"
 import { Button } from "@rmwc/button"
 
@@ -175,7 +174,6 @@ class CalendarComponent extends React.Component {
                         />
                     )}
                     {this.props.editable && <EditRecurrenceMenu />}
-                    <ConfirmationDialog />
                     <AppointmentTooltip
                         showOpenButton={this.props.editable}
                         showDeleteButton={this.props.editable}
