@@ -1,11 +1,13 @@
 import React from 'react'
 
-import { Dialog, DialogTitle, DialogContent, DialogActions } from '@rmwc/dialog'
+import { DialogTitle } from '@rmwc/dialog'
 import { Button } from '@rmwc/button'
 import { IconButton } from '@rmwc/icon-button'
 import { TextField } from '@rmwc/textfield'
 import { Drawer, DrawerContent } from '@rmwc/drawer'
 import { MenuSurfaceAnchor, MenuSurface } from '@rmwc/menu'
+import { Chip } from '@rmwc/chip'
+import { Avatar } from '@rmwc/avatar'
 
 import "./chatBox.css"
 
@@ -27,6 +29,12 @@ class ChatBox extends React.Component {
             text : ""
         })
     }
+    
+    handleKeyDown = (e) => {
+        if (e.key === 'Enter' && this.state.text !== "") {
+            this.sendMessage(this.state.text)
+        }
+    }
 
     render () {
         let displayMessages = this.state.messages
@@ -35,46 +43,40 @@ class ChatBox extends React.Component {
                 <MenuSurfaceAnchor style={{
                     float: "right"}}>
                 <MenuSurface
+                style={{width: "300px"}}
                 open={this.state.isOpen} 
                 onClose={() => this.setState({isOpen : false})}
                 >
-                    <div>
-                    <DialogTitle>{this.props.userInfo.name}</DialogTitle>
+                    <div className="message-top-bar">
+                    <DialogTitle >{this.props.userInfo.name}</DialogTitle>
                     <IconButton 
                     icon="close" 
-                    style={{float: "right", display: "inline", top: "-50px"}}
+                    style={{
+                        float: "right", 
+                        display: "inline", 
+                        top: "-50px"}}
                     onClick={() => this.setState({isOpen : false})} />
                     </div>
-                    <DialogContent>
-                        <Drawer 
-                        style={{
-                            height: "20vh"
-                            }}>
-                            <DrawerContent>
-                                {displayMessages.map((message) => 
-                                <div className="align-right">
-                                    {message}
-                                </div>
-                                )}
-                            </DrawerContent>
-                        </Drawer>
-                    </DialogContent>
+                    <Drawer 
+                    style={{
+                        height: "20vh",
+                        width: "95%",
+                        border: "none"
+                        }}>
+                        <DrawerContent>
+                            {displayMessages.map((message) => 
+                            <div className="message">
+                                <Chip label={message} /><br />
+                            </div>
+                            )}
+                        </DrawerContent>
+                    </Drawer>
                     <div style={{display: "inline"}}>
-                    <IconButton 
-                    icon="emoji_emotions"
-                    style={{
-                        width: "20px", 
-                        height: "20px", 
-                        padding: 0}}
-                    />{" "}
-                    <IconButton
-                    icon="attach_file"
-                    style={{
-                        width: "20px", 
-                        height: "20px", 
-                        padding: 0}} />{" "}
+                    <IconButton icon="emoji_emotions" className="action-icon-button"/>{" "}
+                    <IconButton icon="attach_file" className="action-icon-button"/>{" "}
                     <TextField
                     onChange={(e) => this.setState({text : e.currentTarget.value})}
+                    onKeyDown={(e) => this.handleKeyDown(e)}
                     value={this.state.text}
                     trailingIcon={{
                         icon: 'send',
@@ -91,8 +93,8 @@ class ChatBox extends React.Component {
                 </MenuSurfaceAnchor>
                 <div style={{textAlign : "right"}}>
                 <Button raised onClick={() => this.setState({isOpen : true})}>
-                    {/* {this.props.name} */}
-                    Chat Button
+                    {this.props.userInfo.name}
+                    {/* Chat Button */}
                 </Button>
                 </div>
             </div>
