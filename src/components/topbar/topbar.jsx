@@ -3,16 +3,15 @@ import React from "react"
 //import '@rmwc/button/styles';
 import { Button } from '@rmwc/button';
 import { SimpleMenuSurface, Menu, MenuItem, SimpleMenu, MenuSurface, MenuSurfaceAnchor } from '@rmwc/menu';
-import { IconButton } from '@rmwc/icon-button';
-import { Select } from '@rmwc/select';
 import { Switch } from '@rmwc/switch';
 import { Radio } from '@rmwc/radio';
 import { List, ListItem, ListItemMeta } from '@rmwc/list';
-import { TopAppBar, TopAppBarRow, TopAppBarSection, TopAppBarTitle, TopAppBarActionItem } from '@rmwc/top-app-bar';
+import { TopAppBar, TopAppBarRow, TopAppBarSection, TopAppBarTitle, TopAppBarActionItem, TopAppBarFixedAdjust } from '@rmwc/top-app-bar';
 
 import './topbar.css';
 
 class TopBar extends React.Component {
+
     constructor(props) {
       super(props);
       this.state = {showNotif: false, showSettings: false, notifMute: false, notifMessage: false, notifSound: "Jingle", friendNotif: false, friendMessage: false, friendSound: "Jingle", theme:"Red"};
@@ -71,7 +70,8 @@ class TopBar extends React.Component {
                             </MenuSurfaceAnchor>
                         </TopAppBarSection>
                     </TopAppBarRow>
-                </TopAppBar>
+                </TopAppBar>    
+            <TopAppBarFixedAdjust />
             </div>
         )
     }
@@ -80,7 +80,7 @@ class TopBar extends React.Component {
 class Notif extends React.Component {
     render() {  
         return (  
-            <div style={{ padding : '1px', width: '350px', height: '600px', font: "Roboto" }}>
+            <div style={{ padding : '1px', width: '350px', height: '300px', font: "Roboto" }}>
             <a class = "title"><b>Notifications</b></a>
             <hr/>
                 <List class = "list">
@@ -97,6 +97,11 @@ class Notif extends React.Component {
                         <ListItemMeta icon="close" />
                     </ListItem>
                 </List>
+                
+                <hr/>
+                <a class = "buttonLine">
+                    <Button label = "Clear All"/>
+                </a>
             </div>  
         );  
     }  
@@ -151,7 +156,7 @@ class Settings extends React.Component {
 
     render() {  
         return (  
-            <div style={{ padding : '1px', width: '340px', height: '500px', font: "Roboto" }}>
+            <div style={{ padding : '1px', width: '340px', height: '370px', font: "Roboto" }}>
                 <a class = "title"><b>Settings</b></a>
                 <hr/>
                 <a class = "subtitle">Notifications</a>
@@ -180,40 +185,14 @@ class Settings extends React.Component {
                 <a class = "subtitle">Theme</a>
                 <a class = "radioLine">
                 <Radio
-                    label="Red"
-                    value="Red"
+                    label="Light"
+                    value="Light"
                     name="myRadioGroup"
                     onChange={e => this.setTheme(e.target.value)}
                 />
                 <Radio
-                    label="Blue"
-                    value="Blue"
-                    name="myRadioGroup"
-                    onChange={e => this.setTheme(e.target.value)}
-                />
-                <Radio
-                    label="Yellow"
-                    value="Yellow"
-                    name="myRadioGroup"
-                    onChange={e => this.setTheme(e.target.value)}
-                />
-                </a>
-                <a class = "radioLine">
-                <Radio
-                    label="Green"
-                    value="Green"
-                    name="myRadioGroup"
-                    onChange={e => this.setTheme(e.target.value)}
-                />
-                <Radio
-                    label="Orange"
-                    value="Orange"
-                    name="myRadioGroup"
-                    onChange={e => this.setTheme(e.target.value)}
-                />
-                <Radio
-                    label="Purple"
-                    value="Purple"
+                    label="Dark"
+                    value="Dark"
                     name="myRadioGroup"
                     onChange={e => this.setTheme(e.target.value)}
                 />

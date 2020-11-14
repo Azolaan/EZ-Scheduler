@@ -13,11 +13,11 @@ import { TopBar } from './components/topbar/topbar'
 
 function App() {
   return (
-    <div>
+    <> 
       <TopBar />
 
       <MainPage />
-    </div>
+    </>
   );
 }
 
