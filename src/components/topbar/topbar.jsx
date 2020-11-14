@@ -70,7 +70,7 @@ class TopBar extends React.Component {
                             </MenuSurfaceAnchor>
                         </TopAppBarSection>
                     </TopAppBarRow>
-                </TopAppBar>    
+                </TopAppBar> 
             <TopAppBarFixedAdjust />
             </div>
         )
@@ -156,32 +156,27 @@ class Settings extends React.Component {
 
     render() {  
         return (  
-            <div style={{ padding : '1px', width: '340px', height: '370px', font: "Roboto" }}>
+            <div style={{ padding : '1px', width: '340px', height: '380px', font: "Roboto" }}>
                 <a class = "title"><b>Settings</b></a>
                 <hr/>
                 <a class = "subtitle">Notifications</a>
-                {/* Mute all button*/}
                 <a class = "switchLine">
                     <a class = "switchText">Mute All Notifications </a>
                     <Switch class = "switchButton" defaultNotChecked onChange={this.toggleMute.bind(this)}/>
                 </a>
-                {/* Message Notifications*/}
                 <a class = "switchLine">
                     <a class = "switchText">Message Notifications </a>
                     <Switch class = "switchButton" defaultNotChecked  onChange={this.togglenotifMessage.bind(this)} disabled = {this.state.notifMute}/>
                 </a>
-                {/* Friend Request Notifications*/}
                 <a class = "switchLine">
                     <a class = "switchText">Friend Request Notifcations </a>
                     <Switch class = "switchButton" defaultNotChecked onChange={this.togglefriendMessage.bind(this)} disabled = {this.state.notifMute}/>
                 </a>
-                {/* Friend Request Notifications*/}
                 <a class = "switchLine">
                     <a class = "switchText">Message Notifications </a>
                     <Switch class = "switchButton" defaultNotChecked onChange={this.togglefriendNotif.bind(this)} disabled = {this.state.notifMute}/>
                 </a>
-                <hr/>
-                {/*Theme Radio Buttons*/}
+                <hr />
                 <a class = "subtitle">Theme</a>
                 <a class = "radioLine">
                 <Radio

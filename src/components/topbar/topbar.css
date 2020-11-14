@@ -8,20 +8,9 @@ article {
     font-size: 40px;
 }
 
-button {
-    color: black;
-    margin-right: 10px;
-    background-color: orange;
-}
-.popupHeading{
-    margin-left: 10px;
-}
-
-.switchLine{
-    text-align: right;
-    margin: 5px 10px 10px 10px;
-    display: flex;
-    justify-content: space-between;
+hr {
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .buttonLine{
@@ -38,25 +27,28 @@ button {
 .title{
     font-size: 30px;
     padding: 5px 0px 0px 6px;
+    margin-left: 2px;
     display: block;
 }
 
 .subtitle{
     font-size: 25px;
     padding: 5px 0px 10px 6px;
+    margin-left: 2px;
     display: block;
 }
 
-.dropdownLine{
-    display: block;
-    justify-content: space-around;
-    margin-left: 10px;
-    margin-right: 10px;
+.switchLine{
+    display: flex;
+    margin-left: 12px;
+    margin-right: 12px;
+    padding: 5px;
+    justify-content: space-between;
+    font-family: "Roboto";
 }
 
-.dropdown {
-    margin-top: 10px;
-    margin-bottom: 10px;
+.switchText, .title, .subtitle, .radioLine, .buttonLine{
+    font-family: "Roboto";
 }
 
 .notifsSurface, .settingsSurface {
@@ -71,13 +63,4 @@ button {
 
 .settingsIcon {  
     margin-right: 200px;
-} 
-
-
-.popup_settings_inner {  
-    position: absolute;
-    margin: 5px;  
-    border-radius: 20px;  
-    background: red;
-    background-color: blue;
 }
