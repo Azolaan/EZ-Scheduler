@@ -6,23 +6,6 @@ import jimmyTam from './images/jimmy-tam.png'
 
 const userData = [
     {
-        id: 0,
-        image: johnSmith,
-        name: 'John Smith',
-        username: 'smij32@mcmaster.ca',
-        Password: '123456',
-        School: 'McMaster University',
-        Major: 'Software Engineering',
-        Year: 3,
-        Bio: 'Hi! John here, I\'m in mt third year of Software Engineering.',
-        isUserZero: true,
-        isFriend: false,
-        showProfile: false,
-        showChat: false,
-        showCalendar: true,
-        sendFriendRquest: false
-    },
-    {
         id: 1,
         image: alexLo,
         name: 'Alex Lo',

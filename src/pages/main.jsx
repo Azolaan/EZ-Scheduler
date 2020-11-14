@@ -2,7 +2,7 @@ import React from "react"
 import _ from "lodash"
 
 import { CalendarComponent } from "../components/calendar/calendar"
-import { FriendsListComponent } from './components/friends-list/friends-list'
+import { FriendsListComponent } from "../components/friends-list/friends-list"
 
 import { generateUUID } from "../utils/uuid"
 import { schedulerData } from "../data/scheduler-data"
