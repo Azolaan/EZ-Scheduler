@@ -1,26 +1,70 @@
 import React from 'react'
-// import '@rmwc/button/styles' // remove on merge, acts as placeholder because no direct relationship with App.js
 
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '@rmwc/dialog'
 import { Button } from '@rmwc/button'
-import { Textfield } from '@rmwc/textfield'
+import { IconButton } from '@rmwc/icon-button'
+import { TextField } from '@rmwc/textfield'
+import { Drawer, DrawerContent } from '@rmwc/drawer'
+import { Badge } from '@rmwc/badge'
+
+import "./chatBox.css"
 
 class ChatBox extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            isOpen : false
+            isOpen : false,
+            messages : [],
+            text : ""
         }
     }
 
+    sendMessage = (text) => {
+        var curMessages = this.state.messages
+        curMessages.push(text)
+        this.setState({
+            messages : curMessages,
+            text : ""
+        })
+    }
+
     render () {
+        let displayMessages = this.state.messages
         return(
             <div>
-                <Dialog open={this.state.isOpen} onClose={() => this.setState({isOpen : false})}>
-                    <DialogTitle>{this.props.name}</DialogTitle>
+                <Dialog 
+                open={this.state.isOpen} 
+                onClose={() => this.setState({isOpen : false})}
+                >
+                    <DialogTitle>{this.props.userInfo.name}</DialogTitle>
                     <DialogContent>
+                        <Drawer 
+                        style={{
+                            height: "20vh",
+                            }}>
+                            <DrawerContent>
+                                {displayMessages.map((message) => 
+                                <div className="align-right">
+                                    {message}
+                                </div>
+                                )}
+                            </DrawerContent>
+                        </Drawer>
                     </DialogContent>
                     <DialogActions>
+                    <IconButton 
+                    icon="emoji_emotions"
+                    style={{width: "30px", height: "30px", padding: 0}}
+                    />{" "}
+                    <TextField
+                    onChange={(e) => this.setState({text : e.currentTarget.value})}
+                    value={this.state.text}
+                    trailingIcon={{
+                        icon: 'send',
+                        onClick: () => this.sendMessage(this.state.text)
+                    }}
+                    style={{height: "30px"}}
+                    />
                     </DialogActions>
                 </Dialog>
                 <div style={{textAlign : "right"}}>

@@ -155,7 +155,6 @@ class MainPage extends React.Component {
                 />
                 <FriendsListComponent />
                 {<ChatBox userInfo={userInfo}/>}
-                {<Profile userInfo={userInfo}/>}
             </div>
         )
     }

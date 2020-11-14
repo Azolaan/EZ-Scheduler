@@ -11,6 +11,10 @@ import '@rmwc/textfield/styles';
 import '@rmwc/avatar/styles';
 import '@rmwc/button/styles'
 import '@rmwc/dialog/styles'
+import '@rmwc/textfield/styles'
+import '@rmwc/fab/styles'
+import '@rmwc/drawer/styles'
+import '@rmwc/badge/styles'
 
 import { MainPage } from './pages/main'
 import { TopBar } from './components/topbar/topbar'
