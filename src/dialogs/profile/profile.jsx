@@ -224,7 +224,9 @@ class Profile extends React.Component {
         if (this.props.user === "friend") {
             this.props.removeFriend(this.props.userInfo.id)
         }
-
+        if (this.props.user === "other") {
+            this.props.onAddFriend()
+        }
         this.setState({ friendButtonClicked: true })
     }
 

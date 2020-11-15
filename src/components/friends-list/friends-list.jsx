@@ -128,6 +128,7 @@ class User extends React.Component {
                         userInfo={info}
                         user={"other"}
                         close={this.closeProfile.bind(this)}
+                        onAddFriend={this.sendFriendRequest.bind(this)}
                     />
                 </ListItem>
             )
