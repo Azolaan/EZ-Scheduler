@@ -8,7 +8,7 @@ import { Drawer, DrawerContent } from '@rmwc/drawer'
 import { MenuSurfaceAnchor, MenuSurface } from '@rmwc/menu'
 import { Chip } from '@rmwc/chip'
 import { ListItemMeta } from '@rmwc/list'
-import { Avatar } from '@rmwc/avatar'
+// import { Portal } from '@rmwc/avatar'
 
 import "./chatBox.css"
 
@@ -44,12 +44,13 @@ class ChatBox extends React.Component {
                 <MenuSurfaceAnchor style={{
                     float: "right"}}>
                 <MenuSurface
+                renderToPortal
                 style={{width: "300px"}}
                 open={this.state.isOpen} 
                 onClose={() => this.setState({isOpen : false})}
                 >
                     <div className="message-top-bar">
-                    <DialogTitle >{this.props.userInfo.name}</DialogTitle>
+                    <DialogTitle >{this.props.userInfo}</DialogTitle>
                     <IconButton 
                     icon="close" 
                     style={{
@@ -93,7 +94,7 @@ class ChatBox extends React.Component {
                 </MenuSurface>
                 <div style={{textAlign : "right"}}>
                 <IconButton icon="chat" raised onClick={() => this.setState({isOpen : true})}>
-                    {this.props.userInfo.name}
+                    {this.props.userInfo}
                 </IconButton>
                 </div>
                 </MenuSurfaceAnchor>

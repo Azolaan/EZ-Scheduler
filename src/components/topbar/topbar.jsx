@@ -9,16 +9,19 @@ import { List, ListItem, ListItemMeta, ListItemText} from '@rmwc/list';
 import { TopAppBar, TopAppBarRow, TopAppBarSection, TopAppBarTitle, TopAppBarActionItem, TopAppBarFixedAdjust } from '@rmwc/top-app-bar';
 import { Avatar } from "@rmwc/avatar";
 import { notifData } from "./topbar-data.js";
+import Profile from '../../dialogs/profile/profile'
+
+import johnSmith from '../../components/friends-list/images/john-smith.png'
 
 import './topbar.css';
 
-import johnSmith from '../friends-list/images/john-smith.png'
+// import johnSmith from '../friends-list/images/john-smith.png'
 
 class TopBar extends React.Component {
 
     constructor(props) {
       super(props);
-      this.state = {showNotif: false, showSettings: false, notifMute: false, notifMessage: false, notifSound: "Jingle", friendNotif: false, friendMessage: false, friendSound: "Jingle", theme:"Red"};
+      this.state = {profileOpen : false, showNotif: false, showSettings: false, notifMute: false, notifMessage: false, notifSound: "Jingle", friendNotif: false, friendMessage: false, friendSound: "Jingle", theme:"Red"};
     }
 
     toggleNotif() { 
@@ -51,7 +54,21 @@ class TopBar extends React.Component {
         });
     }
 
+    closeProfile = () => {
+        this.setState({profileOpen : false})
+    }
+
     render() {
+        let info = {
+            name : "John Smith",
+            userName : "SmiJ32",
+            password : "I am John",
+            school : "McMaster University",
+            major : "Computer Science",
+            year : "8",
+            bio : "bruh",
+            img : johnSmith
+          }
         return (
             <div>
                 <TopAppBar>
@@ -72,7 +89,7 @@ class TopBar extends React.Component {
                                     <Settings/>
                                 </MenuSurface>
                             </MenuSurfaceAnchor>
-                            <ListItem>
+                            <ListItem onClick={() => this.setState({profileOpen : true})}>
                                 <Avatar className="avatar"
                                     src={johnSmith}
                                     size="xlarge"/>
@@ -85,6 +102,7 @@ class TopBar extends React.Component {
                     </TopAppBarRow>
                 </TopAppBar> 
             <TopAppBarFixedAdjust />
+            <Profile isFriend={false} isOpen={this.state.profileOpen} userInfo={info} user={"self"} close={this.closeProfile.bind(this)}/>
             </div>
         )
     }
