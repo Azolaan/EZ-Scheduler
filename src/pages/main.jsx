@@ -153,7 +153,7 @@ class MainPage extends React.Component {
                     onDeleteEvent={this._handleDeleteEvent}
                 />
                 <FriendsListComponent />           
-                <Profile userInfo={userInfo}/>
+                {/* <Profile userInfo={userInfo}/> */}
             </div>
         )
     }
