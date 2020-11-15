@@ -20,12 +20,14 @@ class ChatBox extends React.Component {
     }
 
     sendMessage = (text) => {
-        var curMessages = this.state.messages
-        curMessages.push(text)
-        this.setState({
-            messages: curMessages,
-            text: ""
-        })
+        if(this.state.text !== "") {
+            var curMessages = this.state.messages
+            curMessages.push(text)
+            this.setState({
+                messages: curMessages,
+                text: ""
+            })
+        }
     }
 
     handleKeyDown = (e) => {
