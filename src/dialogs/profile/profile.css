@@ -1,0 +1,21 @@
+.dialog {
+    width: 600px;
+}
+
+.text-box {
+    height: 23px;
+}
+
+.bio-text-box {
+    height: 25px;
+    width: 434px;
+}
+
+.right-align {
+    float: right;
+    display: inline;
+}
+
+.bold-text {
+    font-weight: bold;
+}
