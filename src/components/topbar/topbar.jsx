@@ -1,4 +1,5 @@
 import React from "react"
+import _ from "lodash"
 
 import { Button } from "@rmwc/button"
 import { MenuSurface, MenuSurfaceAnchor } from "@rmwc/menu"
@@ -34,7 +35,8 @@ class TopBar extends React.Component {
             friendNotif: false,
             friendMessage: false,
             friendSound: "Jingle",
-            theme: "Red"
+            theme: "Red",
+            notifData: notifData
         }
     }
 
@@ -72,7 +74,21 @@ class TopBar extends React.Component {
         this.setState({ profileOpen: false })
     }
 
+    removeNotif(ID, e) {
+        e.stopPropagation()
+        this.setState({
+            notifData: this.state.notifData.filter(({ notif, id }) => id !== ID)
+        })
+    }
+
+    removeAllNotif() {
+        this.setState({
+            notifData: []
+        })
+    }
+
     render() {
+        let notifData = this.state.notifData
         let info = {
             name: "John Smith",
             userName: "smiJ32@mcmaster.ca",
@@ -100,7 +116,11 @@ class TopBar extends React.Component {
                         <TopAppBarSection alignEnd>
                             <MenuSurfaceAnchor>
                                 <TopAppBarActionItem
-                                    icon="notifications"
+                                    icon={
+                                        _.isEmpty(notifData)
+                                            ? "notifications"
+                                            : "notification_important"
+                                    }
                                     onClick={this.toggleNotif.bind(this)}
                                 />
                                 <MenuSurface
@@ -109,7 +129,15 @@ class TopBar extends React.Component {
                                     open={this.state.showNotif}
                                     onClose={this.offNotif.bind(this)}
                                 >
-                                    <Notif />
+                                    <Notif
+                                        removeNotif={this.removeNotif.bind(
+                                            this
+                                        )}
+                                        removeAllNotif={this.removeAllNotif.bind(
+                                            this
+                                        )}
+                                        notifData={notifData}
+                                    />
                                 </MenuSurface>
                             </MenuSurfaceAnchor>
                             <MenuSurfaceAnchor>
@@ -171,24 +199,10 @@ class TopBar extends React.Component {
 class Notif extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { notifData: notifData }
-    }
-
-    removeNotif(ID, e) {
-        e.stopPropagation()
-        this.setState({
-            notifData: this.state.notifData.filter(({ notif, id }) => id !== ID)
-        })
-    }
-
-    removeAllNotif() {
-        this.setState({
-            notifData: []
-        })
     }
 
     render() {
-        let notifData = this.state.notifData
+        let notifData = this.props.notifData
 
         return (
             <div
@@ -210,7 +224,10 @@ class Notif extends React.Component {
                             {notif.text}
                             <ListItemMeta
                                 icon="close"
-                                onClick={this.removeNotif.bind(this, notif.id)}
+                                onClick={this.props.removeNotif.bind(
+                                    this,
+                                    notif.id
+                                )}
                             />
                         </ListItem>
                     ))}
@@ -219,7 +236,7 @@ class Notif extends React.Component {
                 <a class="buttonLine">
                     <Button
                         label="Clear All"
-                        onClick={this.removeAllNotif.bind(this)}
+                        onClick={this.props.removeAllNotif.bind(this)}
                     />
                 </a>
             </div>
