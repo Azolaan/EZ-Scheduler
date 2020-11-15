@@ -41,21 +41,15 @@ class TopBar extends React.Component {
     }
 
     toggleNotif() {
-        console.log("notif")
-        console.log(this.state.showNotif)
         this.setState({
             showNotif: true
         })
-        console.log(this.state.showNotif)
     }
 
     toggleSettings() {
-        console.log("settings")
-        console.log(this.state.showSettings)
         this.setState({
             showSettings: !this.state.showSettings
         })
-        console.log(this.state.showSettings)
     }
 
     offNotif() {
@@ -256,40 +250,31 @@ class Settings extends React.Component {
     }
 
     setTheme(t) {
-        console.log(t)
         this.props.onChangeTheme(t)
     }
 
     toggleMute() {
-        console.log("Mute")
         this.setState({
             notifMute: !this.state.notifMute
         })
-        console.log(this.state.notifMute)
     }
 
     togglenotifMessage() {
-        console.log("notif Message")
         this.setState({
             notifMessage: !this.state.notifMessage
         })
-        console.log(this.state.notifMessage)
     }
 
     togglefriendMessage() {
-        console.log("Friend Message")
         this.setState({
             friendMessage: !this.state.friendMessage
         })
-        console.log(this.state.friendMessage)
     }
 
     togglefriendNotif() {
-        console.log("friend Notif")
         this.setState({
             friendNotif: !this.state.friendNotif
         })
-        console.log(this.state.friendNotif)
     }
 
     render() {
