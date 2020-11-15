@@ -18,7 +18,8 @@ class User extends React.Component {
     this.state = {showProfile: this.props.showProfile,
                   showChat: this.props.showChat,
                   showCalendar: this.props.showCalendar,
-                  sendFriendRequest: this.props.sendFriendRequest};
+                  sendFriendRequest: this.props.sendFriendRequest,
+                  isFriend: this.props.isFriend};
   }
   
   toggleProfile() {
@@ -65,7 +66,7 @@ class User extends React.Component {
 
   render() {
 
-    if (!this.props.isFriend){
+    if (this.isFriend == false){
       
       return (
         <ListItem>
@@ -105,10 +106,6 @@ class User extends React.Component {
             <ListItemSecondaryText>{this.props.username}</ListItemSecondaryText>
           </ListItemText>
           <ListItemMeta>
-            <Avatar
-            src={this.props.image}
-            size="xlarge"/>
-            
             <Avatar
             src={this.props.image}
             size="xlarge"/>
@@ -185,7 +182,13 @@ class FriendsListComponent extends React.Component {
     });
   }
 
-
+  removeFriend(ID){
+    this.setState({
+        users: this.state.users.map(user => {if(user.id === ID) 
+          {return {...user, isFriend:false} }
+        return user})
+    })
+  }
   
   render() {
 
@@ -208,7 +211,7 @@ class FriendsListComponent extends React.Component {
           <ListGroup>
             <ListGroupSubheader>Friends</ListGroupSubheader>
             {filteredUsers.map(user => user.isFriend &&
-              <User key={user.id} image={user.image} name={user.name} username={user.username} password={user.password} school={user.school} major={user.major} year={user.year} bio={user.bio} isFriend={user.isFriend} showProfile={user.showProfile} showChat={user.showChat} showCalendar={user.showCalendar} sendFriendRequest={user.sendFriendRequest}/>)}
+              <User key={user.id} image={user.image} name={user.name} username={user.username} password={user.password} school={user.school} major={user.major} year={user.year} bio={user.bio} isFriend={user.isFriend} showProfile={user.showProfile} showChat={user.showChat} showCalendar={user.showCalendar} sendFriendRequest={user.sendFriendRequest} removeFriend={this.removeFriend.bind(this, user.id)}/>)}
           </ListGroup>
         </List>
       </div>
