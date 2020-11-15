@@ -183,7 +183,8 @@ class Profile extends React.Component {
                             /><br />
                             Username (ID): <div className="right-align">{this.userNameComponentSelector(this.state.accInfoEditState)}</div><br />
                             Password: <div className="right-align">{this.passwordComponentSelector(this.state.accInfoEditState)}</div><br /><br />
-                            </div>
+                            </div><br />
+                            <div>
                             <Edit
                             section="Personal Information"
                             toggleEditCallBackFn={this.toggleEditCallBackFn.bind(this)}
@@ -192,12 +193,15 @@ class Profile extends React.Component {
                             School: <div className="right-align">{this.schoolComponentSelector(this.state.personalInfoEditState)}</div><br />
                             Major: <div className="right-align">{this.majorComponentSelector(this.state.personalInfoEditState)}</div><br />
                             Year: <div className="right-align">{this.yearComponentSelector(this.state.personalInfoEditState)}</div><br /><br />
+                            </div><br />
+                            <div>
                             <Edit
                             section="Bio"
                             toggleEditCallBackFn={this.toggleEditCallBackFn.bind(this)}
                             editState={this.state.bioEditState}
                             /><br />
                             <div>{this.pickBioComponent()}</div>
+                            </div>
                         </DialogContent>
                         <DialogActions style={{textAlign: "center"}}>
                             <Button onClick={() => this.setState({isOpen : false})} disabled={this.state.editState}>Close</Button>
@@ -210,12 +214,6 @@ class Profile extends React.Component {
             </div>
         )
     }
-}
-
-function TextBoxToggle(props) {
-    return(
-        <div></div>
-    )
 }
 
 class Edit extends React.Component {
@@ -233,7 +231,6 @@ class Edit extends React.Component {
 
     buttonClick = () => {
         this.props.toggleEditCallBackFn(this.props.section)
-        // this.props.toggleTextBoxCallbackFn()
     }
     render() {
         return(
