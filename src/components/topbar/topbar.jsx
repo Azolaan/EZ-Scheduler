@@ -310,20 +310,11 @@ class Settings extends React.Component {
                     />
                 </a>
                 <a class="switchLine">
-                    <a class="switchText">Friend Request Notifcations </a>
+                    <a class="switchText">Friend Request Notifications </a>
                     <Switch
                         class="switchButton"
                         defaultNotChecked
                         onChange={this.togglefriendMessage.bind(this)}
-                        disabled={this.state.notifMute}
-                    />
-                </a>
-                <a class="switchLine">
-                    <a class="switchText">Message Notifications </a>
-                    <Switch
-                        class="switchButton"
-                        defaultNotChecked
-                        onChange={this.togglefriendNotif.bind(this)}
                         disabled={this.state.notifMute}
                     />
                 </a>
