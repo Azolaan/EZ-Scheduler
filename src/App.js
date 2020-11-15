@@ -18,13 +18,14 @@ import '@rmwc/avatar/styles'
 
 import { MainPage } from './pages/main'
 import { TopBar } from './components/topbar/topbar'
+import { Portal } from '@rmwc/base'
 
 
 function App() {
   return (
     <> 
       <TopBar />
-
+      <Portal />
       <MainPage />
     </>
 

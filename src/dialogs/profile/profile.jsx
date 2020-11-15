@@ -3,6 +3,7 @@ import React from 'react'
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '@rmwc/dialog'
 import { Button } from '@rmwc/button'
 import { TextField } from '@rmwc/textfield'
+import { Avatar } from '@rmwc/avatar'
 
 import "./profile.css"
 
@@ -166,26 +167,59 @@ class Profile extends React.Component {
         }
     }
 
+    close = () => {
+        console.log("Alex told me to")
+        this.props.close()
+    }
+
+    renderFriendButton = () => {
+        switch(this.props.user) {
+            case "other":
+                
+                return(
+                    <div>
+                        <Button disabled={this.state.friendButtonPressed} onClick={() => this.setState({friendButtonPressed : true})}>{this.state.friendButtonPressed ? 'Added' : 'Add friend'}
+</Button>
+                    </div>
+                ); break
+            case "friend":
+                return(
+                    <div>
+                        <Button disabled={this.state.friendButtonPressed} onClick={() => this.setState({friendButtonPressed : true})}>{this.state.friendButtonPressed ? 'Removed' : 'Remove friend'}
+</Button>
+                    </div>
+                ); break
+            default:
+                return(
+                    <div></div>
+                )
+        }
+    }
+
     render() {
+        let friendButton = this.renderFriendButton()
         return (
             <div>
                 <div>
                     <Dialog
-                    open={this.state.isOpen} 
+                    open={this.props.isOpen} 
                     onClose={() => this.setState({isOpen : false})}>
-                        <DialogTitle style={{textAlign: "center"}}>Profile<br />Picture here<br />{this.props.userInfo["name"]}</DialogTitle>
+                        <DialogTitle style={{textAlign: "center"}}>Profile<br /><Avatar src={this.props.userInfo["img"]} size="xlarge"/><br />{this.props.userInfo["name"]}<br />{friendButton}</DialogTitle>
                         <DialogContent style={{width: "500px"}}>
                             <div>
                             <Edit
+                            isFriend={this.props.isFriend}
+                            user={this.props.user}
                             section="Account Information"
                             toggleEditCallBackFn={this.toggleEditCallBackFn.bind(this)}
                             editState={this.state.accInfoEditState}
                             /><br />
                             Username (ID): <div className="right-align">{this.userNameComponentSelector(this.state.accInfoEditState)}</div><br />
-                            Password: <div className="right-align">{this.passwordComponentSelector(this.state.accInfoEditState)}</div><br /><br />
                             </div><br />
                             <div>
                             <Edit
+                            isFriend={this.props.isFriend}
+                            user={this.props.user}
                             section="Personal Information"
                             toggleEditCallBackFn={this.toggleEditCallBackFn.bind(this)}
                             editState={this.state.personalInfoEditState}
@@ -196,7 +230,9 @@ class Profile extends React.Component {
                             </div><br />
                             <div>
                             <Edit
+                            isFriend={this.props.isFriend}
                             section="Bio"
+                            user={this.props.user}
                             toggleEditCallBackFn={this.toggleEditCallBackFn.bind(this)}
                             editState={this.state.bioEditState}
                             /><br />
@@ -204,12 +240,9 @@ class Profile extends React.Component {
                             </div>
                         </DialogContent>
                         <DialogActions style={{textAlign: "center"}}>
-                            <Button onClick={() => this.setState({isOpen : false})} disabled={this.state.editState}>Close</Button>
+                            <Button onClick={this.close} disabled={this.state.editState}>Close</Button>
                         </DialogActions>
                     </Dialog>
-                </div>
-                <div style={{textAlign : "right"}}><br />
-                    <Button raised onClick={() => this.setState({isOpen : true})}>Profile</Button>
                 </div>
             </div>
         )
@@ -229,14 +262,31 @@ class Edit extends React.Component {
         }
     }
 
+    renderButton = () => {
+        if(this.props.user !== "self") {
+            console.log(this.props.user)
+            return (
+                <div>
+                    {this.props.section}
+                </div>
+            )
+        } else {
+            return (
+                <div>
+                {this.props.section}{" "}
+                <div className="right-align"><Button onClick={this.buttonClick.bind(this)}>{this.buttonLabel()}</Button></div>
+                </div>
+            )
+        }
+    }
     buttonClick = () => {
         this.props.toggleEditCallBackFn(this.props.section)
     }
     render() {
+        let button = this.renderButton()
         return(
             <div>
-                {this.props.section}{" "}
-                <div className="right-align"><Button onClick={this.buttonClick.bind(this)}>{this.buttonLabel()}</Button></div>
+                {button}
             </div>
         )
     }
