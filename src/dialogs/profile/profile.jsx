@@ -236,10 +236,13 @@ class Profile extends React.Component {
                 return (
                     <div>
                         <Button
-                            disabled={this.state.friendButtonClicked}
+                            disabled={
+                                this.state.friendButtonClicked ||
+                                this.props.added
+                            }
                             onClick={this.handleFriendButtonClick}
                         >
-                            {this.state.friendButtonClicked
+                            {this.state.friendButtonClicked || this.props.added
                                 ? "Added"
                                 : "Add friend"}
                         </Button>

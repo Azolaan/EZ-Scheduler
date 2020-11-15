@@ -69,7 +69,7 @@ class User extends React.Component {
 
     sendFriendRequest() {
         this.setState({
-            sendFriendRequest: !this.state.sendFriendRequest
+            sendFriendRequest: true
         })
     }
 
@@ -129,6 +129,7 @@ class User extends React.Component {
                         user={"other"}
                         close={this.closeProfile.bind(this)}
                         onAddFriend={this.sendFriendRequest.bind(this)}
+                        added={this.state.sendFriendRequest}
                     />
                 </ListItem>
             )
