@@ -75,7 +75,7 @@ class TopBar extends React.Component {
     render() {
         let info = {
             name: "John Smith",
-            userName: "SmiJ32",
+            userName: "smiJ32@mcmaster.ca",
             password: "I am John",
             school: "McMaster University",
             major: "Computer Science",
