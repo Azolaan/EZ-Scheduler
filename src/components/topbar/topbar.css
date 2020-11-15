@@ -3,7 +3,7 @@ hr {
     margin-right: 5px;
 }
 
-.buttonLine{
+.buttonLine {
     text-align: middle;
     display: flex;
     justify-content: center;
@@ -14,21 +14,21 @@ hr {
     margin-right: 10px;
 }
 
-.title{
+.title {
     font-size: 30px;
     padding: 5px 0px 0px 6px;
     margin-left: 2px;
     display: block;
 }
 
-.subtitle{
+.subtitle {
     font-size: 25px;
     padding: 5px 0px 10px 6px;
     margin-left: 2px;
     display: block;
 }
 
-.switchLine{
+.switchLine {
     display: flex;
     margin-left: 12px;
     margin-right: 12px;
@@ -37,24 +37,33 @@ hr {
     font-family: "Roboto";
 }
 
-.switchText, .title, .subtitle, .radioLine, .buttonLine{
+.switchText,
+.title,
+.subtitle,
+.radioLine,
+.buttonLine {
     font-family: "Roboto";
 }
 
-.notifsSurface, .settingsSurface {
+.notifsSurface,
+.settingsSurface {
     background: white;
 }
 
-.radioLine{
+.radioLine {
     display: flex;
     justify-content: space-between;
     width: 290px;
 }
 
-.settingsIcon {  
+.settingsIcon {
     margin-right: 100px;
-} 
+}
 
 .avatar {
     margin-right: 20px;
+}
+
+.notif-list {
+    height: 140px;
 }

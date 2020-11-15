@@ -3,10 +3,13 @@ import _ from "lodash"
 
 import { CalendarComponent } from "../components/calendar/calendar"
 import { FriendsListComponent } from "../components/friends-list/friends-list"
-import Profile from "../dialogs/profile/profile"
 
 import { generateUUID } from "../utils/uuid"
-import { schedulerData } from "../data/scheduler-data"
+import {
+    schedulerData,
+    schedulerDataFriendOne,
+    schedulerDataFriendTwo
+} from "../data/scheduler-data"
 
 import "./main.css"
 
@@ -134,26 +137,24 @@ class MainPage extends React.Component {
     }
 
     render() {
-        let userInfo = {
-            name : "John Smith",
-            userName : "SmiJ32",
-            password : "**********",
-            school : "McMaster University",
-            major : "Software Engineering",
-            year : "4",
-            bio : "Hi! John here, i'm in my last year of Software Engineering"
+        let { data } = this.state
+        if (this.props.calendarView === "friendOne") {
+            data = schedulerDataFriendOne
+        } else if (this.props.calendarView === "friendTwo") {
+            data = schedulerDataFriendTwo
         }
         return (
             <div class="main-page">
                 <CalendarComponent
-                    editable={true}
-                    data={this.state.data}
+                    editable={this.props.calendarView === "self"}
+                    data={data}
                     onAddEvent={this._handleAddEvent}
                     onEditEvent={this._handleEditEvent}
                     onDeleteEvent={this._handleDeleteEvent}
                 />
-                <FriendsListComponent />           
-                {/* <Profile userInfo={userInfo}/> */}
+                <FriendsListComponent
+                    onChangeCalendarView={this.props.onChangeCalendarView}
+                />
             </div>
         )
     }

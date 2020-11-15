@@ -1,6 +1,6 @@
 import { generateUUID } from '../utils/uuid'
 
-let schedulerData = [
+const schedulerData = [
     {
         id: generateUUID(),
         startDate: new Date("2020-09-06T10:30"),
@@ -93,4 +93,116 @@ let schedulerData = [
     }
 ]
 
-export { schedulerData }
+const schedulerDataFriendOne = [
+    {
+        id: generateUUID(),
+        startDate: "2020-11-20T19:00",
+        endDate: "2020-11-20T20:15",
+        title: "Midterm",
+        color: "#795548"
+    },
+    {
+        id: generateUUID(),
+        startDate: "2020-09-06T11:30",
+        endDate: "2020-09-06T12:20",
+        title: "SFWRENG 4HC3 T03 - Human Computer Interfaces",
+        rRule:
+            "RRULE:INTERVAL=1;FREQ=WEEKLY;BYDAY=MO;UNTIL=20201210T110000Z",
+        color: "#ff5722"
+    },
+    {
+        id: generateUUID(),
+        startDate: "2020-09-06T11:30",
+        endDate: "2020-09-06T12:20",
+        title: "SFWRENG 4HC3 C01 - Human Computer Interfaces",
+        rRule:
+            "RRULE:INTERVAL=1;FREQ=WEEKLY;BYDAY=TU,TH,FR;UNTIL=20201210T110000Z",
+        color: "#ff5722"
+    },
+    {
+        id: generateUUID(),
+        startDate: "2020-09-06T12:30",
+        endDate: "2020-09-06T13:20",
+        title: "SFWRENG 4AA4 C01 - Real Time Systems",
+        rRule:
+            "RRULE:INTERVAL=1;FREQ=WEEKLY;BYDAY=MO,TH;UNTIL=20201210T110000Z",
+        color: "#e91e63"
+    },
+    {
+        id: generateUUID(),
+        startDate: "2020-09-06T13:30",
+        endDate: "2020-09-06T14:20",
+        title: "SFWRENG 4AA4 C01 - Real Time Systems",
+        rRule:
+            "RRULE:INTERVAL=1;FREQ=WEEKLY;BYDAY=TU;UNTIL=20201210T110000Z",
+        color: "#e91e63"
+    },
+    {
+        id: generateUUID(),
+        startDate: "2020-09-06T14:30",
+        endDate: "2020-09-06T17:20",
+        title: "SFWRENG 4AA4 L01 - Real Time Systems",
+        rRule:
+            "RRULE:INTERVAL=1;FREQ=WEEKLY;BYDAY=TU;UNTIL=20201210T110000Z",
+        color: "#e91e63"
+    },
+    {
+        id: generateUUID(),
+        startDate: "2020-09-06T11:30",
+        endDate: "2020-09-06T12:20",
+        title: "SFWRENG 4E03 T01 - Perf.Anal.Comp.Syst",
+        rRule:
+            "RRULE:INTERVAL=1;FREQ=WEEKLY;BYDAY=WE;UNTIL=20201210T110000Z",
+        color: "#673ab7"
+    },
+    {
+        id: generateUUID(),
+        startDate: "2020-09-06T16:30",
+        endDate: "2020-09-06T17:20",
+        title: "SFWRENG 4E03 C01 - Perf.Anal.Comp.Syst",
+        rRule:
+            "RRULE:INTERVAL=1;FREQ=WEEKLY;BYDAY=MO,WE,TH;UNTIL=20201210T110000Z",
+        color: "#673ab7"
+    },
+    {
+        id: generateUUID(),
+        startDate: "2020-09-06T17:30",
+        endDate: "2020-09-06T18:20",
+        title: "SFWRENG 4G06A C01 - Sfwr Design IV",
+        rRule:
+            "RRULE:INTERVAL=1;FREQ=WEEKLY;BYDAY=MO,WE,TH;UNTIL=20201210T110000Z",
+        color: "#4caf50"
+    },
+]
+
+const schedulerDataFriendTwo = [
+    {
+        id: generateUUID(),
+        startDate: "2020-10-10T08:00",
+        endDate: "2020-10-10T20:00",
+        title: "Clinical",
+        rRule:
+            "RRULE:INTERVAL=1;FREQ=WEEKLY;BYDAY=SA;UNTIL=20201210T110000Z",
+        color: "#009688"
+    },
+    {
+        id: generateUUID(),
+        startDate: "2020-10-11T08:00",
+        endDate: "2020-10-11T20:00",
+        title: "Clinical",
+        rRule:
+            "RRULE:INTERVAL=1;FREQ=WEEKLY;BYDAY=SU;UNTIL=20201210T110000Z",
+        color: "#009688"
+    },
+    {
+        id: generateUUID(),
+        startDate: "2020-09-06T11:30",
+        endDate: "2020-09-06T12:20",
+        title: "Nursing Tutorial",
+        rRule:
+            "RRULE:INTERVAL=1;FREQ=WEEKLY;BYDAY=TU;UNTIL=20201210T110000Z",
+        color: "#cddc39"
+    }
+]
+
+export { schedulerData, schedulerDataFriendOne, schedulerDataFriendTwo }

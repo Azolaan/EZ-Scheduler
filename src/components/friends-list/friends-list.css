@@ -1,13 +1,12 @@
 .sidebar {
     width: 250px;
-    height: 100%;
     padding: 10px;
 }
 
 .avatar {
-  margin-right: 10px;
+    margin-right: 10px;
 }
-  
-  
-  
-  
+
+.friend-action-button {
+    font-size: 20px;
+}
