@@ -1,13 +1,3 @@
-article {
-    background-color: lightblue;
-    padding-left: 15px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    float: right;
-    width: fill;
-    font-size: 40px;
-}
-
 hr {
     margin-left: 5px;
     margin-right: 5px;
@@ -64,15 +54,6 @@ hr {
 .settingsIcon {  
     margin-right: 100px;
 } 
-
-
-.popup_settings_inner {  
-    position: absolute;
-    margin: 5px;  
-    border-radius: 20px;  
-    background: red;
-    background-color: blue;
-}
 
 .avatar {
     margin-right: 20px;

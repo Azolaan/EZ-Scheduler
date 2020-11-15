@@ -2,12 +2,13 @@ import React from "react"
 
 //import '@rmwc/button/styles';
 import { Button } from '@rmwc/button';
-import { SimpleMenuSurface, Menu, MenuItem, SimpleMenu, MenuSurface, MenuSurfaceAnchor } from '@rmwc/menu';
+import { MenuSurface, MenuSurfaceAnchor } from '@rmwc/menu';
 import { Switch } from '@rmwc/switch';
 import { Radio } from '@rmwc/radio';
-import { List, ListItem, ListItemMeta, ListItemText, ListItemPrimaryText, ListItemSecondaryText, ListItemGraphic } from '@rmwc/list';
+import { List, ListItem, ListItemMeta, ListItemText} from '@rmwc/list';
 import { TopAppBar, TopAppBarRow, TopAppBarSection, TopAppBarTitle, TopAppBarActionItem, TopAppBarFixedAdjust } from '@rmwc/top-app-bar';
-import {Avatar} from "@rmwc/avatar";
+import { Avatar } from "@rmwc/avatar";
+import { notifData } from "./topbar-data.js";
 
 import './topbar.css';
 
@@ -54,7 +55,7 @@ class TopBar extends React.Component {
                 <TopAppBar>
                     <TopAppBarRow>
                         <TopAppBarSection alignStart>
-                            <TopAppBarTitle>EZ Scheduler 12:06</TopAppBarTitle>
+                            <TopAppBarTitle>EZ Scheduler</TopAppBarTitle>
                         </TopAppBarSection>
                         <TopAppBarSection alignEnd>
                             <MenuSurfaceAnchor>
@@ -88,29 +89,41 @@ class TopBar extends React.Component {
 }
 
 class Notif extends React.Component {
+
+    constructor(props){
+        super(props);
+        this.state = {notifData: notifData};
+    }
+
+    removeNotif(ID){
+        this.setState({
+            notifData: this.state.notifData.filter( ({notif, id}) => id != ID)
+        })
+    }
+
+    removeAllNotif(){
+        this.setState({
+            notifData: []
+        })
+    }
+
     render() {  
+
+        let notifData = this.state.notifData
+
         return (  
-            <div style={{ padding : '1px', width: '350px', height: '300px', font: "Roboto" }}>
-            <a class = "title"><b>Notifications</b></a>
-            <hr/>
-                <List class = "list">
-                    <ListItem>
-                        George wants to be your friend!                        
-                        <ListItemMeta icon="close" />
-                    </ListItem>
-                    <ListItem>
-                        ENG 1D04 Midterm soon!
-                        <ListItemMeta icon="close" />
-                    </ListItem>
-                    <ListItem>Cookes
-                        
-                        <ListItemMeta icon="close" />
-                    </ListItem>
+            <div style={{ padding : '1px', width: '350px', height: '280px', font: "Roboto" }}>
+                <a class = "title"><b>Notifications</b></a>
+                <hr/>
+                <List>
+                    {notifData.map(notif =>
+                        <ListItem key = {notif.id}> {notif.text}
+                            <ListItemMeta icon="close" onClick={this.removeNotif.bind(this,notif.id)}/>
+                        </ListItem>)}            
                 </List>
-                
                 <hr/>
                 <a class = "buttonLine">
-                    <Button label = "Clear All"/>
+                    <Button label = "Clear All" onClick={this.removeAllNotif.bind(this)}/>
                 </a>
             </div>  
         );  
