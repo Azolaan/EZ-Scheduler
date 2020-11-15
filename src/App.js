@@ -101,6 +101,7 @@ function App() {
             <MainPage
                 calendarView={calendarView}
                 onChangeCalendarView={handlChangeCalendarView}
+                theme={theme}
             />
             <Portal />
         </ThemeProvider>

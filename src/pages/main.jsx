@@ -154,6 +154,7 @@ class MainPage extends React.Component {
                 />
                 <FriendsListComponent
                     onChangeCalendarView={this.props.onChangeCalendarView}
+                    theme={this.props.theme}
                 />
             </div>
         )

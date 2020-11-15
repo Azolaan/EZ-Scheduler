@@ -150,7 +150,10 @@ class User extends React.Component {
                         </ListItemSecondaryText>
                     </ListItemText>
                     <ListItemMeta>
-                        <ChatBox userInfo={this.props.name} />
+                        <ChatBox
+                            userInfo={this.props.name}
+                            theme={this.props.theme}
+                        />
                     </ListItemMeta>
                     <IconButton
                         className="friend-action-button"
@@ -282,6 +285,7 @@ class FriendsListComponent extends React.Component {
                                         onChangeCalendarView={
                                             this.props.onChangeCalendarView
                                         }
+                                        theme={this.props.theme}
                                     />
                                 )
                         )}

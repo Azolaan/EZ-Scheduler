@@ -20,7 +20,7 @@ class ChatBox extends React.Component {
     }
 
     sendMessage = (text) => {
-        if(this.state.text !== "") {
+        if (this.state.text !== "") {
             var curMessages = this.state.messages
             curMessages.push(text)
             this.setState({
@@ -51,7 +51,19 @@ class ChatBox extends React.Component {
                         open={this.state.isOpen}
                         onClose={() => this.setState({ isOpen: false })}
                     >
-                        <div className="message-top-bar">
+                        <div
+                            className="message-top-bar"
+                            style={{
+                                backgroundColor:
+                                    this.props.theme === "Dark"
+                                        ? "#303030"
+                                        : "#ffdbcf",
+                                color:
+                                    this.props.theme === "Dark"
+                                        ? "rgba(255, 255, 255, 1)"
+                                        : "rgba(0, 0, 0, 0.87)"
+                            }}
+                        >
                             <DialogTitle>{this.props.userInfo}</DialogTitle>
                             <IconButton
                                 icon="close"
