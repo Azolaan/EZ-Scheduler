@@ -12,6 +12,8 @@ import { notifData } from "./topbar-data.js";
 
 import './topbar.css';
 
+import johnSmith from '../friends-list/images/john-smith.png'
+
 class TopBar extends React.Component {
 
     constructor(props) {
@@ -72,7 +74,7 @@ class TopBar extends React.Component {
                             </MenuSurfaceAnchor>
                             <ListItem>
                                 <Avatar className="avatar"
-                                    src=".../friends-list/images/john-smith.png"
+                                    src={johnSmith}
                                     size="xlarge"/>
                                 <ListItemText style = {{fontFamily:'Roboto'}}>John Smith</ListItemText>
                             </ListItem>

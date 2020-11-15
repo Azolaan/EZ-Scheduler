@@ -1,4 +1,3 @@
-import johnSmith from './images/john-smith.png'
 import alexLo from './images/alex-lo.png'
 import gabrielYu from './images/gabriel-yu.png'
 import lawrenceChung from './images/lawrence-chung.png'

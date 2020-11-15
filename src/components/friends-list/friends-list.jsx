@@ -3,7 +3,7 @@ import React from "react"
 import "./friends-list.css"
 
 import { userData } from "./user-data.js"
-import { List, ListItem, ListItemText, ListItemPrimaryText, ListItemSecondaryText, ListItemGraphic, ListItemMeta, ListDivider } from "@rmwc/list"
+import { List, ListItem, ListItemText, ListItemPrimaryText, ListItemSecondaryText, ListItemMeta, ListDivider, ListGroup, ListGroupSubheader } from "@rmwc/list"
 import { TextField } from "@rmwc/textfield"
 import { Dialog, DialogTitle, DialogContent, DialogActions, DialogButton } from "@rmwc/dialog"
 import {Avatar} from "@rmwc/avatar"
@@ -65,43 +65,14 @@ class User extends React.Component {
 
   render() {
 
-    if (this.props.isUserZero) {
-      return (
-
-        <ListItem>
-          <Avatar
-            src={this.props.image}
-            size="xlarge"
-            onClick={this.toggleProfile.bind(this)}/>
-          &nbsp;
-          <ListItemText onClick={this.toggleProfile.bind(this)}>
-            <ListItemPrimaryText>{this.props.name}</ListItemPrimaryText>
-            <ListItemSecondaryText>{this.props.username}</ListItemSecondaryText>
-          </ListItemText>
-          <ListItemMeta icon="calender_today" />
-
-          <Dialog open={this.state.showProfile} onClose={this.closeProfile.bind(this)}>
-            <DialogTitle>{this.props.username}</DialogTitle>
-            <DialogContent>This is a standard dialog.</DialogContent>
-            <DialogActions>
-              <DialogButton action="close">Cancel</DialogButton>
-              <DialogButton action="accept" isDefaultAction>
-                Sweet!
-              </DialogButton>
-            </DialogActions>  
-         </Dialog>
-        </ListItem>
-      )
-    }
-    else if (!this.props.isUserZero && !this.props.isFriend){
+    if (!this.props.isFriend){
       
       return (
         <ListItem>
-          <Avatar
+          <Avatar className="avatar"
             src={this.props.image}
             size="xlarge"
             onClick={this.toggleProfile.bind(this)}/>
-          &nbsp;
           <ListItemText onClick={this.toggleProfile.bind(this)}>
             <ListItemPrimaryText>{this.props.name}</ListItemPrimaryText>
             <ListItemSecondaryText>{this.props.username}</ListItemSecondaryText>
@@ -125,19 +96,36 @@ class User extends React.Component {
     else {
       return (
         <ListItem>
-          <Avatar
+          <Avatar className="avatar"
             src={this.props.image}
             size="xlarge"
             onClick={this.toggleProfile.bind(this)}/>
-          &nbsp;
           <ListItemText onClick={this.toggleProfile.bind(this)}>
             <ListItemPrimaryText>{this.props.name}</ListItemPrimaryText>
             <ListItemSecondaryText>{this.props.username}</ListItemSecondaryText>
           </ListItemText>
-          <ListItemMeta icon="chat" />
-          <ListItemMeta icon="calender_today" />
+          <ListItemMeta>
+            <Avatar
+            src={this.props.image}
+            size="xlarge"/>
+            
+            <Avatar
+            src={this.props.image}
+            size="xlarge"/>
+          </ListItemMeta>
 
           <Dialog open={this.state.showProfile} onClose={this.closeProfile.bind(this)}>
+            <DialogTitle>{this.props.username}</DialogTitle>
+            <DialogContent>This is a standard dialog.</DialogContent>
+            <DialogActions>
+              <DialogButton action="close">Cancel</DialogButton>
+              <DialogButton action="accept" isDefaultAction>
+                Sweet!
+              </DialogButton>
+            </DialogActions>  
+         </Dialog>
+
+         <Dialog open={this.state.showChat} onClose={this.closeChat.bind(this)}>
             <DialogTitle>{this.props.username}</DialogTitle>
             <DialogContent>This is a standard dialog.</DialogContent>
             <DialogActions>
@@ -158,18 +146,21 @@ class FriendsListComponent extends React.Component {
   
   constructor(props) {
     super(props);
-    this.state = {userZero: userData,
-                  users: userData,
-                  filteredUsers: userData};
+    this.state = {users: userData,
+                  filteredUsers: userData,
+                  showUsers: false};
     this.search = this.search.bind(this);
   }
-
 
   search(e) {
 
     let filteredUsers = this.state.filteredUsers;
 
     if (e.target.value != "") {
+
+      this.setState({
+        showUsers: this.state.showUsers = true
+      });
 
       const filterName = e.target.value.toLowerCase();
       const filterUsername = e.target.value.toLowerCase();
@@ -180,39 +171,45 @@ class FriendsListComponent extends React.Component {
         return lowerCaseName.includes(filterName) || lowerCaseUsername.includes(filterUsername);
       })
     } else {
+     
+      this.setState({
+        showUsers: this.state.showUsers = false
+      });
+
       filteredUsers = this.state.users;
+
     }
 
     this.setState({
       filteredUsers: filteredUsers
     });
   }
+
+
   
   render() {
 
-    let userZero = this.state.userZero
     let filteredUsers = this.state.filteredUsers
     return(
       <div class="sidebar">
-        <List twoLine>
-          {userZero.map(user => !user.isFriend && user.isUserZero  &&
-            <User key={user.id} image={user.image} name={user.name} username={user.username} password={user.password} school={user.school} major={user.major} year={user.year} bio={user.bio} isUserZero={user.isUserZero} isFriend={user.isFriend} showProfile={user.showProfile} showChat={user.showChat} showCalendar={user.showCalendar} sendFriendRequest={user.sendFriendRequest}/>)}
-        </List>
         <div>
           <TextField class="textfield"
           icon="search" 
-          onChange={this.search}/>
+          onChange={this.search}
+          />
         </div>
         <List twoLine>
-        <h4>Users</h4>
-          {filteredUsers.map(user => !user.isFriend && !user.isUserZero &&
-            <User key={user.id} image={user.image} name={user.name} username={user.username} password={user.password} school={user.school} major={user.major} year={user.year} bio={user.bio} isUserZero={user.isUserZero} isFriend={user.isFriend} showProfile={user.showProfile} showChat={user.showChat} showCalendar={user.showCalendar} sendFriendRequest={user.sendFriendRequest}/>)}
-        </List>
-        <ListDivider/>
-        <List twoLine>
-        <h4>Friends</h4>
-          {filteredUsers.map(user => user.isFriend &&
-            <User key={user.id} image={user.image} name={user.name} username={user.username} password={user.password} school={user.school} major={user.major} year={user.year} bio={user.bio} isUserZero={user.isUserZero} isFriend={user.isFriend} showProfile={user.showProfile} showChat={user.showChat} showCalendar={user.showCalendar} sendFriendRequest={user.sendFriendRequest}/>)}
+          {this.state.showUsers && <ListGroup>
+            <ListGroupSubheader>Users</ListGroupSubheader>
+            {filteredUsers.map(user => !user.isFriend &&
+              <User key={user.id} image={user.image} name={user.name} username={user.username} password={user.password} school={user.school} major={user.major} year={user.year} bio={user.bio} isFriend={user.isFriend} showProfile={user.showProfile} showChat={user.showChat} showCalendar={user.showCalendar} sendFriendRequest={user.sendFriendRequest}/>)}
+          </ListGroup>}
+        {this.state.showUsers && <ListDivider/>}
+          <ListGroup>
+            <ListGroupSubheader>Friends</ListGroupSubheader>
+            {filteredUsers.map(user => user.isFriend &&
+              <User key={user.id} image={user.image} name={user.name} username={user.username} password={user.password} school={user.school} major={user.major} year={user.year} bio={user.bio} isFriend={user.isFriend} showProfile={user.showProfile} showChat={user.showChat} showCalendar={user.showCalendar} sendFriendRequest={user.sendFriendRequest}/>)}
+          </ListGroup>
         </List>
       </div>
       
