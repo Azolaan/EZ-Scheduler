@@ -141,7 +141,7 @@ class MainPage extends React.Component {
             school : "McMaster University",
             major : "Software Engineering",
             year : "4",
-            bio : "Hi! John here, i'm in my last of Software Engineering"
+            bio : "Hi! John here, i'm in my last year of Software Engineering"
         }
         return (
             <div class="main-page">
