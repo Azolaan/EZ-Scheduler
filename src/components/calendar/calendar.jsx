@@ -182,6 +182,7 @@ class CalendarComponent extends React.Component {
                         visible={this.state.editingFormVisible}
                         onVisibilityChange={this._toggleEditingFormVisibility}
                         basicLayoutComponent={BasicLayoutComponent}
+                        readOnly={!this.props.editable}
                     />
                 </Scheduler>
                 <Button
@@ -189,6 +190,7 @@ class CalendarComponent extends React.Component {
                     label="Create"
                     icon="add"
                     onClick={this._handleCreateEvent}
+                    disabled={!this.props.editable}
                     outlined
                 />
             </>
