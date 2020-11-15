@@ -7,6 +7,7 @@ import { TextField } from '@rmwc/textfield'
 import { Drawer, DrawerContent } from '@rmwc/drawer'
 import { MenuSurfaceAnchor, MenuSurface } from '@rmwc/menu'
 import { Chip } from '@rmwc/chip'
+import { ListItemMeta } from '@rmwc/list'
 import { Avatar } from '@rmwc/avatar'
 
 import "./chatBox.css"
@@ -90,13 +91,12 @@ class ChatBox extends React.Component {
                     />
                     </div>
                 </MenuSurface>
-                </MenuSurfaceAnchor>
                 <div style={{textAlign : "right"}}>
-                <Button raised onClick={() => this.setState({isOpen : true})}>
+                <IconButton icon="chat" raised onClick={() => this.setState({isOpen : true})}>
                     {this.props.userInfo.name}
-                    {/* Chat Button */}
-                </Button>
+                </IconButton>
                 </div>
+                </MenuSurfaceAnchor>
             </div>
         )
     }
