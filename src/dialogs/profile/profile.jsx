@@ -271,7 +271,11 @@ class Profile extends React.Component {
         return (
             <div>
                 <div>
-                    <Dialog open={this.props.isOpen} onClose={this.props.close}>
+                    <Dialog
+                        open={this.props.isOpen}
+                        onClose={this.props.close}
+                        preventOutsideDismiss
+                    >
                         <DialogTitle style={{ textAlign: "center" }}>
                             Profile
                             <br />
